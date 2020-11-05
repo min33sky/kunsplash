@@ -1,19 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ErrorView from '../../components/ErrorView';
 import Loader from '../../components/Loader';
 import { unsplashSelector, unsplashAction } from './slice';
-import { Content, Img, ImgWrapper, Section } from './style';
+import { Content, Img, ImgWrapper, LastItem, Section } from './style';
+import { useInfinityScroll } from './../../hooks';
 
 function ImageGrid() {
   const dispatch = useDispatch();
-  const [target, setTarget] = useState(null);
 
   const { isLoading, images, error } = useSelector(unsplashSelector.all);
+  const target = useRef();
 
   useEffect(() => {
     dispatch(unsplashAction.load());
   }, [dispatch]);
+
+  useInfinityScroll({
+    target,
+    onInterSect: ([{ isIntersecting }]) => {
+      if (isIntersecting) {
+        dispatch(unsplashAction.loadMore());
+      }
+    },
+  });
 
   if (isLoading) {
     return <Loader />;
@@ -32,6 +42,9 @@ function ImageGrid() {
           </ImgWrapper>
         ))}
       </Section>
+      <LastItem ref={target}>
+        <Loader size='s' />
+      </LastItem>
     </Content>
   );
 }

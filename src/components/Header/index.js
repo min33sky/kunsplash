@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HeaderDiv = styled.header`
+const HeaderStyle = styled.header`
   font-size: 1.6rem;
   font-family: 'Pacifico';
   text-align: center;
@@ -15,7 +15,7 @@ const HeaderDiv = styled.header`
 `;
 
 function Header() {
-  return <HeaderDiv>This is K-unsplash</HeaderDiv>;
+  return <HeaderStyle>This is K-unsplash</HeaderStyle>;
 }
 
 export default Header;

@@ -7,7 +7,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   /* 아래 지울꺼야 */
-  border: 2px solid red;
+  border: 2px solid silver;
 `;
 
 export const Error = styled.div`
@@ -27,8 +27,11 @@ export const Section = styled.section`
   width: 100%;
 `;
 
-export const ImgWrapper = styled.div`
+export const ImgWrapper = styled.div.attrs((props) => ({
+  className: props.className,
+}))`
   position: relative;
+  cursor: pointer;
 
   &.item-1 {
     grid-row: span 1;
@@ -55,7 +58,7 @@ export const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 6px;
 `;
 
 export const LastItem = styled.div`
