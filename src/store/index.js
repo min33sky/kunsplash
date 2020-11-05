@@ -17,7 +17,7 @@ export function* rootSaga() {
 function createStore() {
   const store = configureStore({
     reducer: rootReducer,
-    devTools: true,
+    devTools: process.env.NODE_ENV === 'production' ? false : true,
     middleware: [sagaMiddleware],
   });
 
@@ -26,4 +26,4 @@ function createStore() {
   return store;
 }
 
-export default createStore();
+export default createStore;
