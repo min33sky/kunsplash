@@ -7,13 +7,13 @@ export function* handleImageLoad() {
 
   try {
     const page = yield select(unsplashSelector.page);
-    const prevImages = yield select(unsplashSelector.images);
+    // const prevImages = yield select(unsplashSelector.images);
     const nextPage = page + 1;
     const newImages = yield call(getSplashImage, nextPage);
 
     yield put(
       loadSuccess({
-        images: prevImages.concat(newImages),
+        images: newImages,
         nextPage,
       }),
     );

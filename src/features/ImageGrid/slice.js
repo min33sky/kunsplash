@@ -12,11 +12,11 @@ const reducers = {
     state.isLoading = true;
   },
   loadMore: (state) => {
-    return state;
+    state.isLoading = true;
   },
   loadSuccess: (state, { payload: { images, nextPage } }) => {
     state.isLoading = false;
-    state.images = images;
+    state.images.push(...images);
     state.page = nextPage;
   },
   loadFail: (state, { payload: error }) => {

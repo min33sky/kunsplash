@@ -25,10 +25,6 @@ function ImageGrid() {
     },
   });
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   if (error) {
     return <ErrorView />;
   }
