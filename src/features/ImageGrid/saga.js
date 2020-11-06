@@ -7,7 +7,6 @@ export function* handleImageLoad() {
 
   try {
     const page = yield select(unsplashSelector.page);
-    // const prevImages = yield select(unsplashSelector.images);
     const nextPage = page + 1;
     const newImages = yield call(getSplashImage, nextPage);
 
@@ -23,10 +22,9 @@ export function* handleImageLoad() {
 }
 
 function* watchUnsplash() {
-  const { load, loadMore } = unsplashAction;
+  const { load } = unsplashAction;
 
   yield takeLatest(load, handleImageLoad);
-  yield takeLatest(loadMore, handleImageLoad);
 }
 
 export default function* unsplashSaga() {

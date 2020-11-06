@@ -13,24 +13,20 @@ export const useInfinityScroll = ({
   rootMargin = '0px',
 }) => {
   useEffect(() => {
-    const observer = new IntersectionObserver(onInterSect, {
+    let ref = target.current;
+
+    if (!ref) return;
+
+    let observer = new IntersectionObserver(onInterSect, {
       root,
       rootMargin,
       threshold,
     });
 
-    // if (!target) return;
-
-    let ref = target.current;
-
-    if (ref) {
-      observer.observe(ref);
-    }
+    observer.observe(ref);
 
     return () => {
-      if (ref) {
-        observer.unobserve(ref);
-      }
+      observer.unobserve(ref);
     };
   }, [onInterSect, root, rootMargin, target, threshold]);
 };
