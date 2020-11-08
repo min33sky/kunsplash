@@ -12,9 +12,14 @@ function ImageGrid() {
   const { isLoading, images, error } = useSelector(unsplashSelector.all);
   const target = useRef(null);
 
+  // 이미지 불러오기 (무한 스크롤링)
   useInfinityScroll({
     target,
     onInterSect: ([{ isIntersecting }]) => {
+      /**
+       * ? 타겟이 뷰포트에 노출되고
+       * ? 이미지가 로딩중이 아닐 때 API 요청
+       */
       if (isIntersecting && !isLoading) {
         dispatch(unsplashAction.load());
       }
@@ -29,7 +34,7 @@ function ImageGrid() {
     <Content>
       <Section>
         {images.map((image) => (
-          <ImgWrapper key={image.id} className={`item-1`}>
+          <ImgWrapper key={image.id} className={`item-${Math.ceil(image.height / image.width)}`}>
             <Img src={image.urls.small} alt={image.user.username} />
           </ImgWrapper>
         ))}

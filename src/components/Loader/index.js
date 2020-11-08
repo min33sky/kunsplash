@@ -22,6 +22,10 @@ const Loading = styled.div.attrs((props) => ({
   }
 `;
 
+/**
+ * 로더 컴포넌트
+ * @param {string}} size 사이즈
+ */
 function Loader({ size = 'm' }) {
   return <Loading className={`loading-box-${size}`} />;
 }

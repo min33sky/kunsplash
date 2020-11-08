@@ -7,7 +7,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   /* 아래 지울꺼야 */
-  border: 2px solid silver;
+  /* border: 2px solid silver; */
 `;
 
 export const Error = styled.div`
